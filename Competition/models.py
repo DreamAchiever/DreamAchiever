@@ -12,6 +12,6 @@ class Competition(models.Model):
     attachment = models.ManyToManyField(Media)
     type = models.ManyToManyField(Type)
     tag = models.ManyToManyField(Tag)   
-    media = models.ForeignKey(Media)xx
+    media = models.ForeignKey(Media)
     def __unicode__(self):
         return 'Competition:% ' % self.name
