@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from util.models import Media
 from util.models import Media,Type,Tag
-# Create your models here.
+
 class Competition(models.Model):
     '''比赛信息'''
     name = models.CharField(max_length=20,unique=True)
