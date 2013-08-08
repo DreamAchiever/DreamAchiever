@@ -1,16 +1,22 @@
 # Create your views here.
 from django.http import HttpRequest
-# from models import User,Permission
-# def login(req):
-#     req=HttpRequest()
-#     user=User.check(req['username'],req['password'])
-#     if user!=None:
-#         permissions= Permission.objects.filter(role__user__id=user.id)
+from models import User,Permission
+def login(req):
+    req=HttpRequest()
+    user=User.check(req['username'],req['password'])
+    if user!=None:
+        permissions= Permission.objects.filter(role__user__id=user.id)
+        _login_(req,user,permissions)
+        return {'success':True,'msg':'login success'}
+    else:
+        return {'success':False,'msg':'login failed'}
 # def logout(req):
 # 
-# def _login_(req,user,permissions):
-#     req.session()
-#     return short_cut("calendar/calendar.html",{'news':news})
+def _login_(req,user,permissions):
+    req.session()
+def _logout_(req):
+    req.flush()
+
 # def _get_user_(req):
 #     return req.session().get('')
 # 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from Authenticate.models import User
+from authenticate.models import User
 from util.models import Media,Type,Tag
 # Create your models here.
 class Personal(models.Model):
