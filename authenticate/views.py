@@ -10,27 +10,27 @@ def login(req):
         return {'success':True,'msg':'login success'}
     else:
         return {'success':False,'msg':'login failed'}
-# def logout(req):
-# 
+def logout(req):
+    _logout_(req)
+ 
 def _login_(req,user,permissions):
     req.session()
 def _logout_(req):
+    req.session().clear()
     req.flush()
 
-# def _get_user_(req):
-#     return req.session().get('')
-# 
-# def _get_permissions_(req):
-#     return req.session().get('')
-# def checkPermission(req):
-#     path=req.path
-#     permissions=_get_permissions_(req)
-#     for permission in permissions:
-#         if permission.url.equal(path):
-#             return True
-#     return False
-# def add(req):
-#     event=Event()
-#     event.
-#     
+def _get_user_(req):
+    return req.session().get('')
+
+def _get_permissions_(req):
+    return req.session().get('')
+
+def checkPermission(req):
+    path=req.path
+    permissions=_get_permissions_(req)
+    for permission in permissions:
+        if permission.url.equal(path):
+            return True
+    return False
+
 
