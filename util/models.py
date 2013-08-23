@@ -1,75 +1,84 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from authenticate.models import User,Role
+import basemodels
+
+class Media(models.Model):
+    id = basemodels.UUIDField(primary_key=True)#UUID
+    name = models.CharField(max_length=20,unique=True)#媒体名称
+    file_path = models.CharField(max_length=255)#媒体路径
+    description = models.CharField(max_length=255)#媒体描述
+    create_time = models.DateTimeField(auto_now_add=True)#创建时间
+    media_type = models.ForeignKey('MediaType')#媒体类型
+    size = models.BigIntegerField()#文件大小
+    downloads = models.IntegerField()#下载次数
+    create_person = models.ForeignKey(User)#创建者
+    def __unicode__(self):
+        return "Media:%s"%self.name
+    
 class Tag(models.Model):
-    name = models.CharField(max_length=20,unique=True)
-    description = models.CharField(max_length=255)
+    id = basemodels.UUIDField(primary_key=True)#UUID
+    name = models.CharField(max_length=20,unique=True)#标签名称
+    description = models.CharField(max_length=255)#标签注释
      
     def __unicode__(self):
         return "Tag:%s"%self.name
 
 class Type(models.Model):
-    name = models.CharField(max_length=20,unique=True)
-    parent = models.ForeignKey('self',null=True)
-    create_time = models.DateTimeField(auto_now_add=True)
-    description = models.CharField(max_length=255)
+    id = basemodels.UUIDField(primary_key=True)#UUID
+    name = models.CharField(max_length=20,unique=True)#类型名称
+    parent = models.ForeignKey('self',null=True)#父类型
+    create_time = models.DateTimeField(auto_now_add=True)#创建类型
+    description = models.CharField(max_length=255)#类型描述
     
     def __unicode__(self):
         return "Type:%s"%self.name
-
-class Media(models.Model):
-    name = models.CharField(max_length=20,unique=True)
-    file_path = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
-    create_time = models.DateTimeField(auto_now_add=True)
-    media_type = models.ForeignKey('MediaType')
-    size = models.BigIntegerField()
-    downloads = models.IntegerField()
-    create_person = models.ForeignKey(User)
-    def __unicode__(self):
-        return "Media:%s"%self.name
     
 class MediaType(models.Model):
-    name = models.CharField(max_length=20,unique=True)
-    description = models.TextField()
-    max_size = models.BigIntegerField()
+    id = basemodels.UUIDField(primary_key=True)#UUID
+    name = models.CharField(max_length=20,unique=True)#媒体类型名称
+    description = models.TextField()#媒体类型描述
+    max_size = models.BigIntegerField()#媒体上限大小
     def __unicode__(self):
         return 'MediaType:% ' % self.name
 
 class Option(models.Model):
-    name = models.CharField(max_length=20,unique=True)
-    value = models.CharField(max_length=255)
+    id = basemodels.UUIDField(primary_key=True)#UUID
+    name = models.CharField(max_length=20,unique=True)#选项名称
+    value = models.CharField(max_length=255)#选项值
     
     def __unicode__(self):
         return "Option:%s"%self.name
-
-    
+ 
 class FriendLink(models.Model):
-    name = models.CharField(max_length=20,unique=True)
-    description = models.CharField(max_length=255)
-    url = models.URLField()
-    display_order = models.IntegerField(default=0)
-    logo = models.ForeignKey(Media)
+    id = basemodels.UUIDField(primary_key=True)#UUID
+    name = models.CharField(max_length=20,unique=True)#友情链接名称
+    description = models.CharField(max_length=255)#友情链接描述
+    url = models.URLField()#友情链接URL
+    display_order = models.IntegerField(default=0)#展现排序
+    logo = models.ForeignKey(Media)#友情链接logo
     
     def __unicode__(self):
         return "FriendLink:%s"%self.name
     
 class Announcement(models.Model):
-    name = models.CharField(max_length=20)
-    content = models.TextField()
-    target_roles = models.ManyToManyField(Role)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
-    create_person = models.ForeignKey(User)
+    id = basemodels.UUIDField(primary_key=True)#UUID
+    name = models.CharField(max_length=20)#公告名称
+    content = models.TextField()#公告内容
+    target_roles = models.ManyToManyField(Role)#公告面向角色
+    start_time = models.DateTimeField()#公告开始时间
+    end_time = models.DateTimeField()#公告介绍时间
+    create_person = models.ForeignKey(User)#创建人
     def __unicode__(self):
         return 'Announcement:% ' % self.name
 
 class Comment(models.Model):
-    content = models.TextField()
-    create_person = models.ForeignKey(User)
-    target_person = models.ForeignKey(User,null=True)
-    approve_num =models.IntegerField(default=0)
-    create_time = models.DateTimeField(auto_now_add=True)
+    id = basemodels.UUIDField(primary_key=True)#UUID
+    content = models.TextField()#评论内容
+    create_person = models.ForeignKey(User)#创建人
+    target_person = models.ForeignKey(User,null=True)#朝向对象
+    approve_num =models.IntegerField(default=0)#赞人数
+    create_time = models.DateTimeField(auto_now_add=True)#创建时间
     def __unicode__(self):
         return 'Comment:% ' % self.approve_num
     class Meta:

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from authenticate.models import User
+# from authenticate.models import User
 from personal.models import Personal
 from work.models import Work
 from competition.models import Competition 
@@ -49,8 +49,8 @@ class UserNoticeOption(models.Model):
 class Subscription(models.Model):
     '''订阅'''
     name = models.CharField(max_length=20)
-    user = models.ForeignKey(User)
-    calendar = models.ManyToManyField(User)
+#     user = models.ForeignKey(User)
+#     calendar = models.ManyToManyField(User)
     def __unicode__(self):
         return 'Subscription:% ' % self.name
 

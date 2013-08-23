@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//DreamAchiever/view.py=utf-8
+encoding//authenticate/models.py=utf-8
+encoding//competition/models.py=utf-8
+encoding//dream_calendar/models.py=utf-8
+encoding//learn/models.py=utf-8
+encoding//news/models.py=utf-8
+encoding//personal/models.py=utf-8
+encoding//project/models.py=utf-8
+encoding//util/basemodels.py=utf-8
+encoding//util/models.py=utf-8
