@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//DreamAchiever/view.py=utf-8
 encoding//authenticate/models.py=utf-8
 encoding//blog/models.py=utf-8
+encoding//book_store/models.py=utf-8
 encoding//competition/models.py=utf-8
 encoding//dream_calendar/models.py=utf-8
 encoding//learn/models.py=utf-8
