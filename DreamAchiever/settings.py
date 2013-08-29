@@ -15,7 +15,7 @@ DATABASES = {
         'NAME': 'dream_achiever',                   
         'USER': 'root',                   
         'PASSWORD': 'shixuemeiily',          
-        'HOST': 'localhost',                
+        'HOST': '172.55.182.92',                
         'PORT': '3306',
     }
 }
@@ -71,6 +71,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'templates').replace('\\','/'),  
 )
 
 # List of finder classes that know how to find static files in
@@ -110,9 +111,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'templates').replace('\\','/'),
 )
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -163,10 +163,10 @@ LOGGING = {
         },
     }
 }
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = '454033517@qq.com'
+EMAIL_HOST_USER = 'a7210316@qq.com'
 EMAIL_HOST_PASSWORD = 'lybLOVEC#'
 # EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER 

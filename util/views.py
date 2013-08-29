@@ -24,7 +24,7 @@ def contact(request):
                 ['469370868@qq.com'],
                       )
             return HttpResponseRedirect('/contact/tanks/')
-    return render_to_response('contact_form.html',{
+    return render_to_response('calendar/contact_form.html',{
         'errors':errors,
         'subject':request.POST.get('subject',''),
         'message':request.POST.get('message',''),

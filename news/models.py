@@ -11,4 +11,4 @@ class News(models.Model):
     create_person = models.ForeignKey(User)
     views = models.IntegerField()#查看次数
     source = models.CharField(max_length=20)#来源
-    attachments = models.ManyToManyField(Media)
+    attachments = models.ManyToManyField(Media)#附件

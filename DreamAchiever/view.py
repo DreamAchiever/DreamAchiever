@@ -8,7 +8,7 @@ def hello(request):
 
 
 def contact_form(request):
-    return render_to_response('contact_form.html')
+    return render_to_response('calendar/contact_form.html')
 
 def upload(request):
     path=os.path.join(last_dir(os.path.dirname(__file__)), 'calendar').replace('\\','/')

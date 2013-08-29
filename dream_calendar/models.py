@@ -61,7 +61,6 @@ class Subscription(models.Model):
     name = models.CharField(max_length=20)  # 订阅名称
     user = models.ForeignKey(User)  # 订阅人
     calendar = models.ForeignKey(Calendar)  # 订阅日历
-
      
     def __unicode__(self):
         return 'Subscription:% ' % self.name
