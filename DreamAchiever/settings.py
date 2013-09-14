@@ -11,11 +11,11 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'dream_achiever',                   
-        'USER': 'root',                   
-        'PASSWORD': 'shixuemeiily',          
-        'HOST': '172.55.182.92',                
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dream_achiever',
+        'USER': 'root',
+        'PASSWORD': 'shixuemeiily',
+        'HOST': '172.55.182.92',
         'PORT': '3306',
     }
 }
@@ -40,6 +40,10 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
+DATE_FORMAT = "%Y-%m-%d"
+
+DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
 USE_L10N = True
@@ -61,7 +65,6 @@ MEDIA_URL = ''
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = ''
-
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
@@ -71,7 +74,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'templates').replace('\\','/'),  
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'static').replace('\\', '/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -111,7 +114,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'templates').replace('\\','/'),
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'templates').replace('\\', '/'),
 )
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -129,6 +132,7 @@ INSTALLED_APPS = (
     'project',
     'util',
     'work',
+    'service',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -148,18 +152,28 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugFalse'
         }
     },
+    'formatters': {
+        'simple': {
+            'format': '%(asctime)s %(levelname)s %(message)s'
+        },
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+         'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
+            'handlers': ['mail_admins','console'],
+            'level': 'WARNING',
+            'propagate': False,
         },
     }
 }
